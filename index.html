@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generador de números aleatorios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #numeros {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .numero {
+            font-size: 2em;
+            border: 1px solid black;
+            padding: 10px;
+            animation: fadeIn 2s;
+        }
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+    </style>
+</head>
+<body>
+    <h1>Generador de números aleatorios</h1>
+    <button onclick="generarNumeros()">Generar números</button>
+    <div id="numeros"></div>
+
+    <script>
+        function generarNumeros() {
+            var numeros = [];
+            while (numeros.length < 6) {
+                var numero = ("0" + Math.floor(Math.random() * 46)).slice(-2);
+                if (!numeros.includes(numero)) {
+                    numeros.push(numero);
+                }
+            }
+            numeros.sort();
+            var numerosDiv = document.getElementById('numeros');
+            numerosDiv.innerHTML = '';
+            for (var i = 0; i < numeros.length; i++) {
+                var div = document.createElement('div');
+                div.textContent = numeros[i];
+                div.className = 'numero';
+                numerosDiv.appendChild(div);
+            }
+        }
+    </script>
+</body>
+</html>
